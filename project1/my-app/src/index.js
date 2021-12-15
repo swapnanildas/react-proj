@@ -1,17 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { books } from "./books";
+import Book from "./Book";
+// stateless functional component
+// always return JSX
+// div/ section/ article or Fragment
+// use camelCase for HTML attributes
+// className instead of class
+// close every element
+// Formatting
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// function Greeting() {
+//   return <h4>Greetings from Abhi!this is my first react component :D</h4>;
+// }
+
+const names = ["obhi", "milli", "poly"];
+const newNames = names.map((name) => {
+  return <h1>{name}</h1>;
+});
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return <Book key={book.id} {...book} />;
+      })}
+    </section>
+  );
+}
+
+// Messier way of doing the above thing
+// const Greeting = () => {
+//   return React.createElement('h1',{}, 'Hello World!')
+// }
+
+ReactDOM.render(<BookList />, document.getElementById("root"));
